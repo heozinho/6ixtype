@@ -7,23 +7,73 @@ import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Loader2 } from 'lucide-react';
+
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  message: z.string().min(10, "Message must be at least 10 characters").max(2000, "Message must be less than 2000 characters"),
+  botcheck: z.boolean().optional()
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+      botcheck: false
+    }
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success('Message sent successfully!');
-    setFormData({ name: '', email: '', message: '' });
-  };
+  const onSubmit = async (data: FormData) => {
+    if (data.botcheck) {
+      toast.error("Spam detected.");
+      return;
+    }
 
-  const handleReset = () => {
-    setFormData({ name: '', email: '', message: '' });
-    toast.info('Form reset');
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: data.name,
+          email: data.email,
+          message: data.message,
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        reset();
+      } else {
+        toast.error(result.message || "Something went wrong. Please try again later.");
+      }
+    } catch (error) {
+      toast.error("An error occurred while sending the message.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -52,19 +102,22 @@ export default function Contact() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <Card className="p-4 sm:p-6 md:p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              
+              <input type="checkbox" className="hidden" style={{ display: 'none' }} {...register("botcheck")} />
+
               <div className="space-y-2">
                 <Label htmlFor="name">
                   Name <span className="text-destructive">*</span>
                 </Label>
                 <Input
                   id="name"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  {...register("name")}
                   placeholder="Your name"
                   className="bg-input-background"
+                  disabled={isSubmitting}
                 />
+                {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
               </div>
 
               <div className="space-y-2">
@@ -74,15 +127,18 @@ export default function Contact() {
                 <Input
                   id="email"
                   type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  {...register("email")}
                   placeholder="your.email@example.com"
                   className="bg-input-background"
+                  disabled={isSubmitting}
                 />
-                <p className="text-sm text-muted-foreground">
-                  Temporary emails are fine, but use a real one if you want me to reply.
-                </p>
+                {errors.email ? (
+                  <p className="text-sm text-destructive">{errors.email.message}</p>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Temporary emails are fine, but use a real one if you want me to reply.
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -91,26 +147,35 @@ export default function Contact() {
                 </Label>
                 <Textarea
                   id="message"
-                  required
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  {...register("message")}
                   placeholder="Your message..."
                   rows={6}
                   className="bg-input-background resize-none"
+                  disabled={isSubmitting}
                 />
+                {errors.message && <p className="text-sm text-destructive">{errors.message.message}</p>}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button
                   type="submit"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground min-w-[120px]"
+                  disabled={isSubmitting}
                 >
-                  Submit
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    'Submit'
+                  )}
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={handleReset}
+                  onClick={() => reset()}
+                  disabled={isSubmitting}
                 >
                   Reset
                 </Button>
