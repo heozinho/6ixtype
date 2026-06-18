@@ -14,7 +14,7 @@ export default function About() {
         >
           <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">About Me</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-            More than a student portfolio, this is the start of 6ixtype.
+            More than a student portfolio, this showcases my development journey.
           </h1>
         </motion.div>
 
@@ -37,7 +37,7 @@ export default function About() {
             </p>
 
             <p className="text-base sm:text-base sm:text-lg text-foreground leading-relaxed">
-              I'm building <span className="text-primary font-semibold">6ixtype</span> as the front for my work, projects and future software ideas. It represents the type of developer I'm trying to become: someone who can take an idea, understand the user problem, design the interface, build the system and improve it into something usable.
+              {"I'm building this portfolio as the front for my work, projects and future software ideas. It represents the type of developer I'm trying to become: someone who can take an idea, understand the user problem, design the interface, build the system and improve it into something usable."}
             </p>
 
             <p className="text-base sm:text-base sm:text-lg text-foreground leading-relaxed">

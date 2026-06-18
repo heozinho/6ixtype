@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui
 import { Briefcase, Award, TrendingUp, Building2, MapPin, Languages, Code2, Target } from 'lucide-react';
 
 import { portfolioStats, personalStats } from '@/data/stats';
+import { profile } from '@/data/profile';
 
 export default function Stats() {
   return (
@@ -14,7 +15,7 @@ export default function Stats() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">6ixtype</p>
+          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">{profile.name}</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">About this portfolio</h1>
           <p className="text-base sm:text-lg text-muted-foreground">
             Insights and metrics about my portfolio, projects and development journey.

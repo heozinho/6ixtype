@@ -19,7 +19,7 @@ export default function Projects() {
         >
           <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">Projects</p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-            Ideas I'm actually building, not just listing.
+            {"Ideas I'm actually building, not just listing."}
           </h1>
         </motion.div>
 

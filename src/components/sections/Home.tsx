@@ -41,13 +41,13 @@ export default function Home() {
               transition={{ delay: 0.4, duration: 0.5 }}
             >
               <p>
-                I'm a Computer Science student at Nottingham Trent University and a junior full-stack developer focused on building useful web apps, dashboards and tools that solve actual problems.
+                {"I'm a Computer Science student at Nottingham Trent University and a junior full-stack developer focused on building useful web apps, dashboards and tools that solve actual problems."}
               </p>
               <p>
-                My portfolio is also the front for <span className="text-primary font-semibold">6ixtype</span>, a small software identity I'm building around practical products, clean interfaces and real-world systems. My work sits between web development, data, logistics tech, automation and user-focused dashboards.
+                My portfolio is also the front for <span className="text-primary font-semibold">6ixtype</span>, a software identity I build projects under, focused around practical products, clean interfaces and real-world systems. My work sits between web development, data, logistics tech, automation and user-focused dashboards.
               </p>
               <p>
-                I've worked with React, Next.js, TypeScript, JavaScript, Python, C++, MySQL and modern web tools. I'm also building projects around Spotify data, warehouse systems, internal dashboards, Minecraft server tooling and software ideas that can grow into real SaaS products.
+                {"I've worked with React, Next.js, TypeScript, JavaScript, Python, C++, MySQL and modern web tools. I'm also building projects around Spotify data, warehouse systems, internal dashboards, Minecraft server tooling and software ideas that can grow into real SaaS products."}
               </p>
             </motion.div>
           </div>
@@ -80,7 +80,7 @@ export default function Home() {
             <Button
               size="lg"
               variant="outline"
-              onClick={() => window.location.href = 'mailto:contact@6ixtype.dev'}
+              onClick={() => window.location.href = `mailto:${profile.email}`}
             >
               <Mail className="w-5 h-5 mr-2" />
               Send Mail

@@ -6,8 +6,8 @@ export const projects = [
     link: 'https://6stats.pages.dev'
   },
   {
-    title: '6ixtype Portfolio',
-    description: 'The main portfolio and brand website for my projects, software ideas and developer profile. This site acts as the front door for 6ixtype, showing who I am, what I build, what I\'m learning and the kind of software products I want to create.',
+    title: 'Gabriel Salas Portfolio',
+    description: 'The main portfolio and website for my projects, software ideas and developer profile. This site acts as the front door for my work, showing who I am, what I build, what I\'m learning and the kind of software products I want to create.',
     tech: 'Next.js, React, Tailwind CSS, UI design, personal branding',
     link: '#'
   },

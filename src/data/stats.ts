@@ -8,15 +8,15 @@ export const portfolioStats = [
     icon: Briefcase
   },
   {
-    label: 'Main Brand',
-    value: '6ixtype',
-    caption: 'The front for my portfolio, software projects and future product ideas.',
+    label: 'Developer Profile',
+    value: 'Gabriel Salas',
+    caption: 'My portfolio and software project hub.',
     icon: Award
   },
   {
     label: 'Main Live Project',
     value: '6stats',
-    caption: 'A Spotify stats tracker and one of the first public-facing 6ixtype projects.',
+    caption: 'A Spotify stats tracker and one of my first public-facing projects.',
     icon: TrendingUp
   }
 ];

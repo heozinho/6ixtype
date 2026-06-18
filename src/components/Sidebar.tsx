@@ -5,6 +5,7 @@ import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, BarChart3, Co
 import { Button } from './ui/button';
 import { useTheme } from 'next-themes';
 import { cn } from '../lib/utils';
+import { profile } from '@/data/profile';
 
 const navigation = [
   { name: 'Home', path: '/', icon: Home },
@@ -26,10 +27,10 @@ export default function Sidebar() {
       <div className="p-6">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-lg font-bold text-primary-foreground">6</span>
+            <span className="text-lg font-bold text-primary-foreground">GS</span>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-foreground group-hover:text-primary transition-colors">6ixtype</span>
+            <span className="font-bold text-foreground group-hover:text-primary transition-colors">{profile.name}</span>
             <span className="text-xs text-muted-foreground">Portfolio</span>
           </div>
         </Link>
@@ -94,17 +95,10 @@ export default function Sidebar() {
           className="w-full justify-start"
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         >
-          {theme === 'dark' ? (
-            <>
-              <Sun className="w-4 h-4 mr-2" />
-              Light Mode
-            </>
-          ) : (
-            <>
-              <Moon className="w-4 h-4 mr-2" />
-              Dark Mode
-            </>
-          )}
+          <Sun className="w-4 h-4 mr-2 hidden dark:block" />
+          <Moon className="w-4 h-4 mr-2 block dark:hidden" />
+          <span className="hidden dark:inline">Light Mode</span>
+          <span className="inline dark:hidden">Dark Mode</span>
         </Button>
       </div>
     </aside>

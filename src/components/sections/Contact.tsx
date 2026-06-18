@@ -89,7 +89,7 @@ export default function Contact() {
             Get in touch before I turn another idea into a dashboard.
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground">
-            I'm open to internships, placement opportunities, junior developer roles, software projects, freelance-style web work and collaborations around 6ixtype.
+            {"I'm open to internships, placement opportunities, junior developer roles, software projects, freelance-style web work and collaborations."}
           </p>
           <p className="text-base sm:text-lg text-muted-foreground mt-4">
             Use the form to contact me about opportunities, projects or anything related to web development, dashboards, software systems or practical tech ideas.

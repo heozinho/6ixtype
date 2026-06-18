@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, BarChart3, Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { cn } from '../lib/utils';
+import { profile } from '@/data/profile';
 
 const navigation = [
   { name: 'Home', path: '/', icon: Home },
@@ -27,9 +28,9 @@ export default function MobileNav() {
         <div className="flex items-center justify-between p-4">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-base font-bold text-primary-foreground">6</span>
+              <span className="text-base font-bold text-primary-foreground">GS</span>
             </div>
-            <span className="font-bold text-foreground">6ixtype</span>
+            <span className="font-bold text-foreground">{profile.name}</span>
           </Link>
           <Button
             variant="ghost"

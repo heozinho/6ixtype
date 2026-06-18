@@ -20,7 +20,7 @@ export default function Skills() {
             Learned through projects, uni work and fixing real problems.
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl">
-            I work mostly across full-stack web development, databases, backend systems, dashboards and practical software tooling. I'm strongest when building useful interfaces connected to real data and workflows.
+            {"I work mostly across full-stack web development, databases, backend systems, dashboards and practical software tooling. I'm strongest when building useful interfaces connected to real data and workflows."}
           </p>
         </motion.div>
 
