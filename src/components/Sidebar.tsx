@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, BarChart3, Code, Link2, FileText, Moon, Sun } from 'lucide-react';
+import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, BarChart3, Code, Link2, FileText, Moon, Sun, Layers } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from 'next-themes';
 import { cn } from '../lib/utils';
@@ -16,6 +16,10 @@ const navigation = [
   { name: 'Education', path: '/education', icon: GraduationCap },
   { name: 'Contact', path: '/contact', icon: Mail },
   { name: 'Stats', path: '/stats', icon: BarChart3 },
+];
+
+const ecosystemNav = [
+  { name: 'Launchpad', path: '/launchpad', icon: Layers },
 ];
 
 export default function Sidebar() {
@@ -36,7 +40,7 @@ export default function Sidebar() {
         </Link>
       </div>
 
-      <nav className="flex-1 px-3 space-y-1">
+      <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
         {navigation.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.path;
@@ -60,6 +64,32 @@ export default function Sidebar() {
             </Link>
           );
         })}
+
+        <div className="pt-3 mt-3 border-t border-border">
+          <p className="px-3 pb-2 text-[10px] font-semibold text-muted-foreground/60 uppercase tracking-widest">Ecosystem</p>
+          {ecosystemNav.map((item) => {
+            const Icon = item.icon;
+            const isActive = pathname === item.path;
+            return (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={cn(
+                  "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group",
+                  isActive
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                )}
+              >
+                <Icon className={cn(
+                  "w-5 h-5",
+                  isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
+                )} />
+                <span className="font-medium">{item.name}</span>
+              </Link>
+            );
+          })}
+        </div>
       </nav>
 
       <div className="p-4 space-y-3 border-t border-border">
