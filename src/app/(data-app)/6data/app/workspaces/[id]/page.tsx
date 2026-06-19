@@ -1,5 +1,6 @@
 import { mockWorkspaces } from '@/data/6data-workspaces';
 import Link from 'next/link';
+export const runtime = 'edge';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Settings, Database, Activity, Search } from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
