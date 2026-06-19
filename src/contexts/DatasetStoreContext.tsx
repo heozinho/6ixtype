@@ -6,40 +6,48 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import type { ParsedDataset, SavedQuery } from '@/lib/6data/types';
-import { datasetStore, queryStore } from '@/lib/6data/store';
+import type { ParsedDataset, SavedQuery, SavedChart } from '@/lib/6data/types';
+import { datasetStore, queryStore, chartStore } from '@/lib/6data/store';
 
 interface DatasetStoreCtx {
   datasets: ParsedDataset[];
   queries: SavedQuery[];
+  charts: SavedChart[];
   addDataset: (ds: ParsedDataset) => void;
   updateDataset: (id: string, patch: Partial<ParsedDataset>) => void;
   removeDataset: (id: string) => void;
   getDataset: (id: string) => ParsedDataset | undefined;
   addQuery: (q: SavedQuery) => void;
   removeQuery: (id: string) => void;
+  addChart: (c: SavedChart) => void;
+  removeChart: (id: string) => void;
   refresh: () => void;
 }
 
 const DatasetStoreContext = createContext<DatasetStoreCtx>({
   datasets: [],
   queries: [],
+  charts: [],
   addDataset: () => undefined,
   updateDataset: () => undefined,
   removeDataset: () => undefined,
   getDataset: () => undefined,
   addQuery: () => undefined,
   removeQuery: () => undefined,
+  addChart: () => undefined,
+  removeChart: () => undefined,
   refresh: () => undefined,
 });
 
 export function DatasetStoreProvider({ children }: { children: React.ReactNode }) {
   const [datasets, setDatasets] = useState<ParsedDataset[]>([]);
   const [queries, setQueries] = useState<SavedQuery[]>([]);
+  const [charts, setCharts] = useState<SavedChart[]>([]);
 
   const refresh = useCallback(() => {
     setDatasets(datasetStore.getAll());
     setQueries(queryStore.getAll());
+    setCharts(chartStore.getAll());
   }, []);
 
   useEffect(() => {
@@ -91,9 +99,31 @@ export function DatasetStoreProvider({ children }: { children: React.ReactNode }
     [refresh]
   );
 
+  const addChart = useCallback(
+    (c: SavedChart) => {
+      chartStore.add(c);
+      refresh();
+    },
+    [refresh]
+  );
+
+  const removeChart = useCallback(
+    (id: string) => {
+      chartStore.remove(id);
+      refresh();
+    },
+    [refresh]
+  );
+
   return (
     <DatasetStoreContext.Provider
-      value={{ datasets, queries, addDataset, updateDataset, removeDataset, getDataset, addQuery, removeQuery, refresh }}
+      value={{ 
+        datasets, queries, charts, 
+        addDataset, updateDataset, removeDataset, getDataset, 
+        addQuery, removeQuery, 
+        addChart, removeChart, 
+        refresh 
+      }}
     >
       {children}
     </DatasetStoreContext.Provider>

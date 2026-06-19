@@ -100,3 +100,43 @@ export const queryStore = {
     return `q-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   },
 };
+
+const CHART_STORAGE_KEY = '6data:charts:v1';
+
+function loadCharts(): import('./types').SavedChart[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = window.localStorage.getItem(CHART_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCharts(charts: import('./types').SavedChart[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(CHART_STORAGE_KEY, JSON.stringify(charts));
+  } catch {}
+}
+
+export const chartStore = {
+  getAll(): import('./types').SavedChart[] {
+    return loadCharts();
+  },
+  getByDatasetId(datasetId: string): import('./types').SavedChart[] {
+    return loadCharts().filter((c) => c.datasetId === datasetId);
+  },
+  add(chart: import('./types').SavedChart): void {
+    const all = loadCharts();
+    all.push(chart);
+    saveCharts(all);
+  },
+  remove(id: string): void {
+    const all = loadCharts().filter((c) => c.id !== id);
+    saveCharts(all);
+  },
+  generateId(): string {
+    return `c-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  },
+};

@@ -113,3 +113,17 @@ export interface SavedQuery {
   createdAt: string;
   updatedAt: string;
 }
+
+// ─── Visualisation Studio ───────────────────────────────────────────────────────
+
+export type ChartType = 'bar' | 'line' | 'area' | 'scatter';
+
+export interface SavedChart {
+  id: string;
+  name: string;
+  datasetId: string;
+  type: ChartType;
+  xAxis: string;
+  yAxis: string;
+  createdAt: string;
+}
