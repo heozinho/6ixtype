@@ -7,7 +7,7 @@ import WorkspaceSwitcher from "./WorkspaceSwitcher";
 
 export default function DataTopbar() {
   return (
-    <header className="h-14 border-b border-white/6 bg-[#0d0d18]/80 backdrop-blur-sm flex items-center px-4 gap-3 flex-shrink-0">
+    <header className="h-14 border-b border-white/6 bg-[#0d0d18]/80 backdrop-blur-sm flex items-center px-4 gap-3 flex-shrink-0 relative z-50">
       {/* Workspace switcher */}
       <WorkspaceSwitcher />
 

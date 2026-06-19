@@ -14,17 +14,17 @@ export default function LaunchpadHero() {
         <div className="w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
           <Layers className="w-4 h-4 text-violet-400" />
         </div>
-        <span className="text-xs font-semibold text-white/40 uppercase tracking-widest">
+        <span className="text-xs font-semibold text-foreground/40 uppercase tracking-widest">
           Ecosystem
         </span>
       </div>
 
       <div className="space-y-3">
-        <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white">
+        <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-foreground">
           6ixtype{" "}
-          <span className="text-white/30">Launchpad</span>
+          <span className="text-foreground/30">Launchpad</span>
         </h1>
-        <p className="text-base sm:text-lg text-white/50 max-w-2xl leading-relaxed">
+        <p className="text-base sm:text-lg text-foreground/50 max-w-2xl leading-relaxed">
           The official ecosystem hub. Four products, one direction — music analytics, data platforms, audio software and the portfolio that holds it all together.
         </p>
       </div>

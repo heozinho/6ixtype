@@ -40,8 +40,8 @@ export default function LaunchpadGrid() {
             onClick={() => setActiveFilter(filter.id)}
             className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border ${
               activeFilter === filter.id
-                ? "bg-white text-black border-white"
-                : "bg-white/5 text-white/50 border-white/10 hover:bg-white/10 hover:text-white/80"
+                ? "bg-foreground text-background border-foreground"
+                : "bg-foreground/5 text-foreground/50 border-foreground/10 hover:bg-foreground/10 hover:text-foreground/80"
             }`}
           >
             {filter.label}
@@ -59,7 +59,7 @@ export default function LaunchpadGrid() {
       </motion.div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-16 text-white/30 text-sm">
+        <div className="text-center py-16 text-foreground/30 text-sm">
           No products match this filter.
         </div>
       )}
