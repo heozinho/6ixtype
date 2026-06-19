@@ -85,3 +85,21 @@ export const demoDatasetsMetadata: DemoDataset[] = [
     qualityScore: 91,
   },
 ];
+export const demoDatasets = demoDatasetsMetadata.map((meta) => {
+  const headers = meta.columns.map((c) => c.name);
+  // Generate 5 mock rows
+  const rows = Array.from({ length: 5 }).map((_, i) => {
+    const row: Record<string, string> = {};
+    meta.columns.forEach((c) => {
+      if (c.type === 'integer') row[c.name] = Math.floor(Math.random() * 100).toString();
+      else if (c.type === 'decimal') row[c.name] = (Math.random() * 100).toFixed(2);
+      else if (c.type === 'category') row[c.name] = `Category ${['A', 'B', 'C'][i % 3]}`;
+      else if (c.type === 'datetime') row[c.name] = new Date().toISOString();
+      else if (c.type === 'date') row[c.name] = new Date().toISOString().split('T')[0];
+      else row[c.name] = `Sample text ${i + 1}`;
+    });
+    return row;
+  });
+
+  return { ...meta, headers, rows };
+});
