@@ -113,6 +113,6 @@ export const ecosystemApps: EcosystemApp[] = [
     accent: 'amber',
     accentHex: '#f59e0b',
     primaryAction: { label: 'View Concept', href: '/projects' },
-    secondaryAction: { label: 'Coming Soon', href: '#' },
+    secondaryAction: { label: 'Coming Soon', href: '/projects' },
   },
 ];

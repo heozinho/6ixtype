@@ -98,7 +98,7 @@ export default function Sidebar() {
             variant="outline"
             size="icon"
             className="flex-1"
-            onClick={() => window.open('https://linkedin.com', '_blank')}
+            onClick={() => window.open(profile.linkedin, '_blank')}
           >
             <Link2 className="w-4 h-4" />
           </Button>
@@ -106,7 +106,7 @@ export default function Sidebar() {
             variant="outline"
             size="icon"
             className="flex-1"
-            onClick={() => window.open('https://github.com', '_blank')}
+            onClick={() => window.open(profile.github, '_blank')}
           >
             <Code className="w-4 h-4" />
           </Button>
@@ -114,7 +114,7 @@ export default function Sidebar() {
             variant="outline"
             size="icon"
             className="flex-1"
-            onClick={() => window.open('#', '_blank')}
+            onClick={() => window.open(profile.resumeUrl, '_blank')}
           >
             <FileText className="w-4 h-4" />
           </Button>
