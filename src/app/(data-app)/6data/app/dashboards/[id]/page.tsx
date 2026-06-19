@@ -1,5 +1,5 @@
 'use client';
-export const runtime = 'edge';
+
 import { useState, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useDatasetStore } from '@/contexts/DatasetStoreContext';

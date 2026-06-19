@@ -7,7 +7,8 @@ import React, {
   useState,
 } from 'react';
 import type { ParsedDataset, SavedQuery, SavedChart, SavedDashboard, ResearchNote } from '@/lib/6data/types';
-import { datasetStore, queryStore, chartStore, dashboardStore, researchStore } from '@/lib/6data/store';
+import type { MockWorkspace } from '@/data/6data-workspaces';
+import { datasetStore, queryStore, chartStore, dashboardStore, researchStore, workspaceStore } from '@/lib/6data/store';
 
 interface DatasetStoreCtx {
   datasets: ParsedDataset[];
@@ -15,6 +16,9 @@ interface DatasetStoreCtx {
   charts: SavedChart[];
   dashboards: SavedDashboard[];
   researchNotes: ResearchNote[];
+  workspaces: MockWorkspace[];
+  addWorkspace: (w: MockWorkspace) => void;
+  removeWorkspace: (id: string) => void;
   addDataset: (ds: ParsedDataset) => void;
   updateDataset: (id: string, patch: Partial<ParsedDataset>) => void;
   removeDataset: (id: string) => void;
@@ -38,6 +42,9 @@ const DatasetStoreContext = createContext<DatasetStoreCtx>({
   charts: [],
   dashboards: [],
   researchNotes: [],
+  workspaces: [],
+  addWorkspace: () => undefined,
+  removeWorkspace: () => undefined,
   addDataset: () => undefined,
   updateDataset: () => undefined,
   removeDataset: () => undefined,
@@ -61,6 +68,7 @@ export function DatasetStoreProvider({ children }: { children: React.ReactNode }
   const [charts, setCharts] = useState<SavedChart[]>([]);
   const [dashboards, setDashboards] = useState<SavedDashboard[]>([]);
   const [researchNotes, setResearchNotes] = useState<ResearchNote[]>([]);
+  const [workspaces, setWorkspaces] = useState<MockWorkspace[]>([]);
 
   const refresh = useCallback(() => {
     setDatasets(datasetStore.getAll());
@@ -68,6 +76,7 @@ export function DatasetStoreProvider({ children }: { children: React.ReactNode }
     setCharts(chartStore.getAll());
     setDashboards(dashboardStore.getAll());
     setResearchNotes(researchStore.getAll());
+    setWorkspaces(workspaceStore.getAll());
   }, []);
 
   useEffect(() => {
@@ -183,10 +192,27 @@ export function DatasetStoreProvider({ children }: { children: React.ReactNode }
     [refresh]
   );
 
+  const addWorkspace = useCallback(
+    (w: MockWorkspace) => {
+      workspaceStore.add(w);
+      refresh();
+    },
+    [refresh]
+  );
+
+  const removeWorkspace = useCallback(
+    (id: string) => {
+      workspaceStore.remove(id);
+      refresh();
+    },
+    [refresh]
+  );
+
   return (
     <DatasetStoreContext.Provider
       value={{ 
-        datasets, queries, charts, dashboards, researchNotes,
+        datasets, queries, charts, dashboards, researchNotes, workspaces,
+        addWorkspace, removeWorkspace,
         addDataset, updateDataset, removeDataset, getDataset, 
         addQuery, removeQuery, 
         addChart, removeChart, 

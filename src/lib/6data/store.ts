@@ -1,5 +1,6 @@
 'use client';
 import type { ParsedDataset } from './types';
+import { mockWorkspaces, MockWorkspace } from '@/data/6data-workspaces';
 
 const STORAGE_KEY = '6data:datasets:v1';
 
@@ -228,5 +229,57 @@ export const researchStore = {
   },
   generateId(): string {
     return `note-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  },
+};
+
+const WORKSPACE_STORAGE_KEY = '6data:workspaces:v1';
+
+function loadWorkspaces(): MockWorkspace[] {
+  if (typeof window === 'undefined') return mockWorkspaces;
+  try {
+    const raw = window.localStorage.getItem(WORKSPACE_STORAGE_KEY);
+    if (!raw) {
+      window.localStorage.setItem(WORKSPACE_STORAGE_KEY, JSON.stringify(mockWorkspaces));
+      return mockWorkspaces;
+    }
+    return JSON.parse(raw);
+  } catch {
+    return mockWorkspaces;
+  }
+}
+
+function saveWorkspaces(workspaces: MockWorkspace[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(WORKSPACE_STORAGE_KEY, JSON.stringify(workspaces));
+  } catch {}
+}
+
+export const workspaceStore = {
+  getAll(): MockWorkspace[] {
+    return loadWorkspaces();
+  },
+  getById(id: string): MockWorkspace | undefined {
+    return loadWorkspaces().find((w) => w.id === id);
+  },
+  add(workspace: MockWorkspace): void {
+    const all = loadWorkspaces();
+    all.push(workspace);
+    saveWorkspaces(all);
+  },
+  update(id: string, patch: Partial<MockWorkspace>): void {
+    const all = loadWorkspaces();
+    const index = all.findIndex((w) => w.id === id);
+    if (index !== -1) {
+      all[index] = { ...all[index], ...patch };
+      saveWorkspaces(all);
+    }
+  },
+  remove(id: string): void {
+    const all = loadWorkspaces().filter((w) => w.id !== id);
+    saveWorkspaces(all);
+  },
+  generateId(): string {
+    return `ws-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   },
 };

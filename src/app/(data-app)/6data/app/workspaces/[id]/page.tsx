@@ -1,17 +1,35 @@
-import { mockWorkspaces } from '@/data/6data-workspaces';
+'use client';
+import { use, useEffect, useState } from 'react';
 import Link from 'next/link';
-export const runtime = 'edge';
-import { notFound } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { ArrowLeft, Settings, Database, Activity, Search } from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import DatasetList from '@/components/6data/dataset/DatasetList';
+import { useDatasetStore } from '@/contexts/DatasetStoreContext';
+import type { MockWorkspace } from '@/data/6data-workspaces';
 
-export default async function WorkspacePage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = await params;
-  const workspace = mockWorkspaces.find((w) => w.id === resolvedParams.id);
+export default function WorkspacePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const router = useRouter();
+  const { workspaces } = useDatasetStore();
+  const [workspace, setWorkspace] = useState<MockWorkspace | undefined>(undefined);
+  const [mounted, setMounted] = useState(false);
 
-  if (!workspace) return notFound();
+  useEffect(() => {
+    setWorkspace(workspaces.find((w) => w.id === id));
+    setMounted(true);
+  }, [workspaces, id]);
+
+  if (!mounted) return null;
+  if (!workspace) {
+    return (
+      <div className="p-10 text-center">
+        <h1 className="text-2xl text-white font-bold">Workspace Not Found</h1>
+        <button onClick={() => router.push('/6data/app/workspaces')} className="mt-4 text-cyan-400">Return to Workspaces</button>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 lg:p-10 max-w-[1600px] mx-auto min-h-full">

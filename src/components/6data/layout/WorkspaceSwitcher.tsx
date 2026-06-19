@@ -1,13 +1,16 @@
 "use client";
 import { useState } from "react";
 import { ChevronDown, Check, FolderOpen } from "lucide-react";
-import { mockWorkspaces } from "@/data/6data-workspaces";
+import { useDatasetStore } from "@/contexts/DatasetStoreContext";
+import CreateWorkspaceModal from "../workspace/CreateWorkspaceModal";
 
 export default function WorkspaceSwitcher() {
+  const { workspaces } = useDatasetStore();
   const [open, setOpen] = useState(false);
-  const [activeId, setActiveId] = useState(mockWorkspaces[0].id);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [activeId, setActiveId] = useState(workspaces[0]?.id || 'ws-demo-lab');
 
-  const active = mockWorkspaces.find((w) => w.id === activeId) ?? mockWorkspaces[0];
+  const active = workspaces.find((w) => w.id === activeId) ?? workspaces[0];
 
   return (
     <div className="relative">
@@ -42,7 +45,7 @@ export default function WorkspaceSwitcher() {
               </p>
             </div>
             <div className="pb-2">
-              {mockWorkspaces.map((ws) => (
+              {workspaces.map((ws) => (
                 <button
                   key={ws.id}
                   onClick={() => {
@@ -73,7 +76,13 @@ export default function WorkspaceSwitcher() {
             </div>
 
             <div className="px-3 pt-2 pb-3 border-t border-white/6">
-              <button className="flex items-center gap-2 text-xs text-white/35 hover:text-white/60 transition-colors font-medium">
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  setModalOpen(true);
+                }}
+                className="flex items-center gap-2 text-xs text-white/35 hover:text-white/60 transition-colors font-medium w-full text-left"
+              >
                 <FolderOpen className="w-3.5 h-3.5" />
                 New workspace
               </button>
@@ -81,6 +90,8 @@ export default function WorkspaceSwitcher() {
           </div>
         </>
       )}
+
+      <CreateWorkspaceModal open={modalOpen} onOpenChange={setModalOpen} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 'use client';
-export const runtime = 'edge';
+
 import { useDatasetStore } from '@/contexts/DatasetStoreContext';
 import { notFound, useParams } from 'next/navigation';
 import DatasetHeader from '@/components/6data/dataset/DatasetHeader';
