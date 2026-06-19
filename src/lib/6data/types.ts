@@ -101,3 +101,15 @@ export interface CleaningStep {
   config: Record<string, unknown>;
   appliedAt: string;
 }
+
+// ─── Query Lab ────────────────────────────────────────────────────────────────
+
+export interface SavedQuery {
+  id: string;
+  name: string;
+  description?: string;
+  datasetId: string;
+  sql: string;
+  createdAt: string;
+  updatedAt: string;
+}

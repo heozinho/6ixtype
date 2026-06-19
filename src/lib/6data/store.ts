@@ -60,3 +60,43 @@ export const datasetStore = {
     return `ds-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   },
 };
+
+const QUERY_STORAGE_KEY = '6data:queries:v1';
+
+function loadQueries(): import('./types').SavedQuery[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = window.localStorage.getItem(QUERY_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveQueries(queries: import('./types').SavedQuery[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(QUERY_STORAGE_KEY, JSON.stringify(queries));
+  } catch {}
+}
+
+export const queryStore = {
+  getAll(): import('./types').SavedQuery[] {
+    return loadQueries();
+  },
+  getByDatasetId(datasetId: string): import('./types').SavedQuery[] {
+    return loadQueries().filter((q) => q.datasetId === datasetId);
+  },
+  add(query: import('./types').SavedQuery): void {
+    const all = loadQueries();
+    all.push(query);
+    saveQueries(all);
+  },
+  remove(id: string): void {
+    const all = loadQueries().filter((q) => q.id !== id);
+    saveQueries(all);
+  },
+  generateId(): string {
+    return `q-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  },
+};
