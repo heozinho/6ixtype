@@ -127,3 +127,22 @@ export interface SavedChart {
   yAxis: string;
   createdAt: string;
 }
+
+// ─── Dashboard Builder ─────────────────────────────────────────────────────────
+
+export interface DashboardWidget {
+  id: string;
+  chartId: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export interface SavedDashboard {
+  id: string;
+  name: string;
+  widgets: DashboardWidget[];
+  createdAt: string;
+  updatedAt: string;
+}

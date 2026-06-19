@@ -140,3 +140,48 @@ export const chartStore = {
     return `c-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   },
 };
+
+const DASHBOARD_STORAGE_KEY = '6data:dashboards:v1';
+
+function loadDashboards(): import('./types').SavedDashboard[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = window.localStorage.getItem(DASHBOARD_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveDashboards(dashboards: import('./types').SavedDashboard[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(DASHBOARD_STORAGE_KEY, JSON.stringify(dashboards));
+  } catch {}
+}
+
+export const dashboardStore = {
+  getAll(): import('./types').SavedDashboard[] {
+    return loadDashboards();
+  },
+  add(dashboard: import('./types').SavedDashboard): void {
+    const all = loadDashboards();
+    all.push(dashboard);
+    saveDashboards(all);
+  },
+  update(id: string, patch: Partial<import('./types').SavedDashboard>): void {
+    const all = loadDashboards();
+    const index = all.findIndex((d) => d.id === id);
+    if (index !== -1) {
+      all[index] = { ...all[index], ...patch, updatedAt: new Date().toISOString() };
+      saveDashboards(all);
+    }
+  },
+  remove(id: string): void {
+    const all = loadDashboards().filter((d) => d.id !== id);
+    saveDashboards(all);
+  },
+  generateId(): string {
+    return `dash-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  },
+};
