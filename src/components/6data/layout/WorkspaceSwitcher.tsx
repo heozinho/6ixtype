@@ -30,12 +30,12 @@ export default function WorkspaceSwitcher() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-10"
+            className="fixed inset-0 z-[90]"
             onClick={() => setOpen(false)}
           />
 
           {/* Dropdown */}
-          <div className="absolute top-full left-0 mt-1.5 z-20 w-64 rounded-xl border border-white/10 bg-[#13131f] shadow-2xl shadow-black/50 overflow-hidden">
+          <div className="absolute top-full left-0 mt-1.5 z-[100] w-64 rounded-xl border border-white/10 bg-[#0a0a12]/95 backdrop-blur-xl shadow-2xl shadow-black/50 overflow-hidden">
             <div className="px-3 pt-3 pb-2">
               <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest">
                 Workspaces

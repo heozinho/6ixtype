@@ -264,8 +264,8 @@ export default function ImportPage() {
               setStep(4);
               setStage('parsing');
               setProgress(20);
-              const demo = demoDatasets.find(d => d.id === 'demo-spotify');
-              if (demo) await handleLoadDemo('demo-spotify');
+              const demo = demoDatasets.find(d => d.id === 'demo-music-6stats');
+              if (demo) await handleLoadDemo('demo-music-6stats');
             }} 
           />
         </div>

@@ -61,7 +61,7 @@ export default function ImportSourceGrid({ onSelect, selectedId }: ImportSourceG
             onClick={() => !s.disabled && onSelect(s.id)}
             disabled={s.disabled}
             className={cn(
-              'relative flex flex-col items-start p-5 rounded-xl border text-left transition-all duration-200',
+              'relative flex flex-col items-start p-5 rounded-xl border text-left transition-all duration-200 h-full',
               s.disabled
                 ? 'opacity-50 cursor-not-allowed border-white/5 bg-white/[0.01]'
                 : isSelected
