@@ -10,7 +10,7 @@ import { chartStore } from '@/lib/6data/store';
 import type { ChartType, SavedChart } from '@/lib/6data/types';
 import { applyCleaningSteps } from '@/lib/6data/cleaning-engine';
 
-const CHART_TYPES: { type: ChartType; label: string; icon: React.ElementType }[] = [
+const CHART_TYPES: { type: ChartType; label: string; icon: any }[] = [
   { type: 'bar', label: 'Bar Chart', icon: BarChart3 },
   { type: 'line', label: 'Line Chart', icon: LineChart },
   { type: 'area', label: 'Area Chart', icon: AreaChart },

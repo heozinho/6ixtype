@@ -11,7 +11,7 @@ interface StepBuilderProps {
   onCancel: () => void;
 }
 
-const OPERATIONS: { type: CleaningStepType; label: string; icon: React.ElementType; desc: string }[] = [
+const OPERATIONS: { type: CleaningStepType; label: string; icon: any; desc: string }[] = [
   { type: 'rename_column', label: 'Rename Column', icon: Edit3, desc: 'Change a column name.' },
   { type: 'change_type', label: 'Change Type', icon: Type, desc: 'Force a specific data type.' },
   { type: 'remove_duplicates', label: 'Remove Duplicates', icon: Copy, desc: 'Drop duplicate rows.' },
