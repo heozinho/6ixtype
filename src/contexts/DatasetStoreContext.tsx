@@ -6,14 +6,15 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import type { ParsedDataset, SavedQuery, SavedChart, SavedDashboard } from '@/lib/6data/types';
-import { datasetStore, queryStore, chartStore, dashboardStore } from '@/lib/6data/store';
+import type { ParsedDataset, SavedQuery, SavedChart, SavedDashboard, ResearchNote } from '@/lib/6data/types';
+import { datasetStore, queryStore, chartStore, dashboardStore, researchStore } from '@/lib/6data/store';
 
 interface DatasetStoreCtx {
   datasets: ParsedDataset[];
   queries: SavedQuery[];
   charts: SavedChart[];
   dashboards: SavedDashboard[];
+  researchNotes: ResearchNote[];
   addDataset: (ds: ParsedDataset) => void;
   updateDataset: (id: string, patch: Partial<ParsedDataset>) => void;
   removeDataset: (id: string) => void;
@@ -25,6 +26,9 @@ interface DatasetStoreCtx {
   addDashboard: (d: SavedDashboard) => void;
   updateDashboard: (id: string, patch: Partial<SavedDashboard>) => void;
   removeDashboard: (id: string) => void;
+  addResearchNote: (note: ResearchNote) => void;
+  updateResearchNote: (id: string, patch: Partial<ResearchNote>) => void;
+  removeResearchNote: (id: string) => void;
   refresh: () => void;
 }
 
@@ -33,6 +37,7 @@ const DatasetStoreContext = createContext<DatasetStoreCtx>({
   queries: [],
   charts: [],
   dashboards: [],
+  researchNotes: [],
   addDataset: () => undefined,
   updateDataset: () => undefined,
   removeDataset: () => undefined,
@@ -44,6 +49,9 @@ const DatasetStoreContext = createContext<DatasetStoreCtx>({
   addDashboard: () => undefined,
   updateDashboard: () => undefined,
   removeDashboard: () => undefined,
+  addResearchNote: () => undefined,
+  updateResearchNote: () => undefined,
+  removeResearchNote: () => undefined,
   refresh: () => undefined,
 });
 
@@ -52,12 +60,14 @@ export function DatasetStoreProvider({ children }: { children: React.ReactNode }
   const [queries, setQueries] = useState<SavedQuery[]>([]);
   const [charts, setCharts] = useState<SavedChart[]>([]);
   const [dashboards, setDashboards] = useState<SavedDashboard[]>([]);
+  const [researchNotes, setResearchNotes] = useState<ResearchNote[]>([]);
 
   const refresh = useCallback(() => {
     setDatasets(datasetStore.getAll());
     setQueries(queryStore.getAll());
     setCharts(chartStore.getAll());
     setDashboards(dashboardStore.getAll());
+    setResearchNotes(researchStore.getAll());
   }, []);
 
   useEffect(() => {
@@ -149,14 +159,39 @@ export function DatasetStoreProvider({ children }: { children: React.ReactNode }
     [refresh]
   );
 
+  const addResearchNote = useCallback(
+    (note: ResearchNote) => {
+      researchStore.add(note);
+      refresh();
+    },
+    [refresh]
+  );
+
+  const updateResearchNote = useCallback(
+    (id: string, patch: Partial<ResearchNote>) => {
+      researchStore.update(id, patch);
+      refresh();
+    },
+    [refresh]
+  );
+
+  const removeResearchNote = useCallback(
+    (id: string) => {
+      researchStore.remove(id);
+      refresh();
+    },
+    [refresh]
+  );
+
   return (
     <DatasetStoreContext.Provider
       value={{ 
-        datasets, queries, charts, dashboards,
+        datasets, queries, charts, dashboards, researchNotes,
         addDataset, updateDataset, removeDataset, getDataset, 
         addQuery, removeQuery, 
         addChart, removeChart, 
         addDashboard, updateDashboard, removeDashboard,
+        addResearchNote, updateResearchNote, removeResearchNote,
         refresh 
       }}
     >

@@ -185,3 +185,48 @@ export const dashboardStore = {
     return `dash-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   },
 };
+
+const RESEARCH_STORAGE_KEY = '6data:research:v1';
+
+function loadResearchNotes(): import('./types').ResearchNote[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = window.localStorage.getItem(RESEARCH_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveResearchNotes(notes: import('./types').ResearchNote[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(RESEARCH_STORAGE_KEY, JSON.stringify(notes));
+  } catch {}
+}
+
+export const researchStore = {
+  getAll(): import('./types').ResearchNote[] {
+    return loadResearchNotes();
+  },
+  add(note: import('./types').ResearchNote): void {
+    const all = loadResearchNotes();
+    all.push(note);
+    saveResearchNotes(all);
+  },
+  update(id: string, patch: Partial<import('./types').ResearchNote>): void {
+    const all = loadResearchNotes();
+    const index = all.findIndex((n) => n.id === id);
+    if (index !== -1) {
+      all[index] = { ...all[index], ...patch, updatedAt: new Date().toISOString() };
+      saveResearchNotes(all);
+    }
+  },
+  remove(id: string): void {
+    const all = loadResearchNotes().filter((n) => n.id !== id);
+    saveResearchNotes(all);
+  },
+  generateId(): string {
+    return `note-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  },
+};

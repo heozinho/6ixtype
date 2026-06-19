@@ -146,3 +146,14 @@ export interface SavedDashboard {
   createdAt: string;
   updatedAt: string;
 }
+
+// ─── Research Workspace ────────────────────────────────────────────────────────
+
+export interface ResearchNote {
+  id: string;
+  title: string;
+  content: string; // Markdown content
+  linkedChartIds: string[]; // Reference to SavedCharts
+  createdAt: string;
+  updatedAt: string;
+}
