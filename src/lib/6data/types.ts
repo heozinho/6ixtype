@@ -91,6 +91,7 @@ export type CleaningStepType =
   | 'filter_rows'
   | 'lowercase'
   | 'uppercase'
+  | 'drop_column'
   | 'create_calculated_column';
 
 export interface CleaningStep {

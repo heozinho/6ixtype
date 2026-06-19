@@ -66,6 +66,16 @@ export default function DatasetHeader({ dataset }: DatasetHeaderProps) {
           <Share2 className="w-3.5 h-3.5 mr-1.5" />
           Share
         </button>
+        <Link
+          href={`/6data/app/cleaning?id=${dataset.id}`}
+          className={cn(
+            buttonVariants({ size: 'sm' }),
+            'text-xs h-8 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 border border-cyan-500/20'
+          )}
+        >
+          <Settings className="w-3.5 h-3.5 mr-1.5" />
+          Clean Data
+        </Link>
         <button
           className={cn(
             buttonVariants({ variant: 'outline', size: 'sm' }),

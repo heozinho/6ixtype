@@ -1,0 +1,128 @@
+<USER_REQUEST>
+# 6ixtype Ecosystem + 6Data Full Product Build Plan
+
+## 0. Ecosystem Definition
+
+The ecosystem must only contain these core products/areas:
+
+```txt
+6ixtype = parent brand / portfolio / launchpad
+6Stats = Spotify/music analytics
+6Data = main data platform
+6Play = music/audio software direction
+Research/Learning tools = inside 6Data
+```
+
+Do not create or reference extra branded products outside this list.
+
+Do not introduce separate product names such as operations products, finance products, fitness products, or other 6-branded side apps.
+
+If additional ideas are needed, they must be expressed as **modules, templates, dashboards, connectors, or modes inside 6Data**, not as separate brands.
+
+Correct structure:
+
+```txt
+6ixtype
+├── Launchpad / portfolio / parent brand
+├── 6Stats
+│   └── Spotify/music analytics app
+├── 6Data
+│   ├── Import Centre
+│   ├── Data Vault
+│   ├── Dataset Profiles
+│   ├── Cleaning Studio
+│   ├── Query Lab
+│   ├── Visualisation Studio
+│   ├── 3D Lab
+│   ├── Render Studio
+│   ├── Research Workspace
+│   ├── Learning Mode
+│   ├── Dashboard Builder
+│   ├── Automation Centre
+│   ├── Publishing Hub
+│   └── Connector Marketplace
+└── 6Play
+    └── Music/audio software direction
+```
+
+---
+
+# 1. Overall Product Philosophy
+
+The goal is not to build a basic portfolio with a few projects.
+
+The goal is to build a real software ecosystem under **6ixtype**, where:
+
+* **6ixtype** acts as the public identity, launchpad, product hub, and portfolio.
+* **6Stats** proves the ability to ship a real deployed analytics product.
+* **6Data** becomes the flagship platform: a robust data operating system.
+* **6Play** remains the music/audio software direction.
+* Research and Learning tools live inside **6Data**, because they are data workflows.
+
+The main strategic idea:
+
+```txt
+6Stats proves music analytics.
+6Data generalises analytics into a full data platform.
+<truncated 41659 bytes>
+driven render template.
+5. Enable PNG export for charts/3D/render if possible.
+6. Keep everything connected to datasets.
+7. Do not introduce separate product brands.
+8. Ensure npm run build passes.
+```
+
+---
+
+# 34. Final Long-Term Direction
+
+The long-term product should feel like this:
+
+```txt
+6ixtype is the brand.
+6Stats proves the analytics direction.
+6Data becomes the main platform.
+6Play keeps the music/audio direction alive.
+Research and Learning become powerful modes inside 6Data.
+```
+
+The killer 6Data demo:
+
+```txt
+A user uploads a dataset.
+6Data profiles it.
+6Data explains data quality issues.
+The user cleans it.
+The user queries it.
+The user creates charts.
+The user explores it in 3D.
+The user creates a polished render.
+The user builds a dashboard.
+The user writes a research report.
+The user exports or shares the result.
+```
+
+That is the core product.
+
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-06-19T10:37:42+01:00.
+
+The user's current state is as follows:
+Active Document: /Users/user/u/6ixtype/src/data/profile.ts (LANGUAGE_TYPESCRIPT)
+Cursor is on line: 1
+Other open documents:
+- /Users/user/u/6ixtype/src/components/sections/Skills.tsx (LANGUAGE_TSX)
+- /Users/user/u/6ixtype/src/components/sections/About.tsx (LANGUAGE_TSX)
+- /Users/user/u/6ixtype/src/components/MobileNav.tsx (LANGUAGE_TSX)
+- /Users/user/u/6ixtype/src/components/Sidebar.tsx (LANGUAGE_TSX)
+- /Users/user/u/6ixtype/src/data/stats.ts (LANGUAGE_TYPESCRIPT)
+Browser State:
+  Page E8FDB7833C3D117BB7FE1FA48FBC44BC (6Stats) - https://6stats.pages.dev/
+    Viewport: 1425x783, Page Height: 1067
+  Page 59F18CD3543F9F6D97D483090A75EBD1 (6Stats) - https://6stats.pages.dev/ [ACTIVE]
+    Viewport: 1425x783, Page Height: 3088
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Gemini 3.1 Pro (High). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>

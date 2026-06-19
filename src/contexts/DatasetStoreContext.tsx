@@ -12,6 +12,7 @@ import { datasetStore } from '@/lib/6data/store';
 interface DatasetStoreCtx {
   datasets: ParsedDataset[];
   addDataset: (ds: ParsedDataset) => void;
+  updateDataset: (id: string, patch: Partial<ParsedDataset>) => void;
   removeDataset: (id: string) => void;
   getDataset: (id: string) => ParsedDataset | undefined;
   refresh: () => void;
@@ -20,6 +21,7 @@ interface DatasetStoreCtx {
 const DatasetStoreContext = createContext<DatasetStoreCtx>({
   datasets: [],
   addDataset: () => undefined,
+  updateDataset: () => undefined,
   removeDataset: () => undefined,
   getDataset: () => undefined,
   refresh: () => undefined,
@@ -44,6 +46,14 @@ export function DatasetStoreProvider({ children }: { children: React.ReactNode }
     [refresh]
   );
 
+  const updateDataset = useCallback(
+    (id: string, patch: Partial<ParsedDataset>) => {
+      datasetStore.update(id, patch);
+      refresh();
+    },
+    [refresh]
+  );
+
   const removeDataset = useCallback(
     (id: string) => {
       datasetStore.remove(id);
@@ -59,7 +69,7 @@ export function DatasetStoreProvider({ children }: { children: React.ReactNode }
 
   return (
     <DatasetStoreContext.Provider
-      value={{ datasets, addDataset, removeDataset, getDataset, refresh }}
+      value={{ datasets, addDataset, updateDataset, removeDataset, getDataset, refresh }}
     >
       {children}
     </DatasetStoreContext.Provider>
