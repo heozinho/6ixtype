@@ -12,6 +12,8 @@ import ImportProgress from '@/components/6data/import/ImportProgress';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { readFileAsCSV } from '@/lib/6data/csv';
+import SQLiteUploader from '@/components/6data/import/SQLiteUploader';
+import SixStatsConnector from '@/components/6data/import/SixStatsConnector';
 import { inferSchema } from '@/lib/6data/infer-schema';
 import { generateProfile } from '@/lib/6data/profile';
 import type { ParsedDataset, SchemaColumn, ColumnType } from '@/lib/6data/types';
@@ -37,11 +39,7 @@ export default function ImportPage() {
 
   const handleSourceSelect = (id: string) => {
     setSourceId(id);
-    if (id === 'demo_data') {
-      setStep(2);
-    } else if (id === 'local_file') {
-      setStep(2);
-    }
+    setStep(2); // Automatically advance for all active sources
   };
 
   const handleFileSelect = async (selectedFile: File) => {
@@ -231,6 +229,45 @@ export default function ImportPage() {
               </button>
             ))}
           </div>
+        </div>
+      )}
+
+      {step === 2 && sourceId === 'sqlite' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-bold text-white">Upload SQLite Database</h2>
+            <button onClick={() => setStep(1)} className="text-xs text-cyan-400 hover:text-cyan-300">Change source</button>
+          </div>
+          <p className="text-xs text-white/40">Powered by WebAssembly. The database is processed entirely in your browser.</p>
+          <SQLiteUploader 
+            onDataExtracted={(h, r, fname) => {
+              setHeaders(h);
+              setRows(r);
+              setFile(new File([], fname));
+              setSchema(inferSchema(h, r));
+              setStep(3);
+            }} 
+            onError={(err) => setError(err)} 
+          />
+        </div>
+      )}
+
+      {step === 2 && sourceId === '6stats' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-bold text-white">6Stats Connector</h2>
+            <button onClick={() => setStep(1)} className="text-xs text-cyan-400 hover:text-cyan-300">Change source</button>
+          </div>
+          <SixStatsConnector 
+            onConnect={async () => {
+              // Simulate pulling from 6Stats
+              setStep(4);
+              setStage('parsing');
+              setProgress(20);
+              const demo = demoDatasets.find(d => d.id === 'demo-spotify');
+              if (demo) await handleLoadDemo('demo-spotify');
+            }} 
+          />
         </div>
       )}
 
