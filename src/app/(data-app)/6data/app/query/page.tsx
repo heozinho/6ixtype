@@ -22,6 +22,7 @@ export default function QueryLabPage() {
   const [error, setError] = useState<string | null>(null);
   const [saveName, setSaveName] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const [runHistory, setRunHistory] = useState<{sql: string, timestamp: string}[]>([]);
 
   const activeDataset = datasets.find((ds) => ds.id === selectedDatasetId);
 
@@ -32,6 +33,7 @@ export default function QueryLabPage() {
     try {
       const res = await executeQuery(sql, activeDataset.name, activeDataset.rows);
       setResult(res);
+      setRunHistory(prev => [{ sql, timestamp: new Date().toLocaleTimeString() }, ...prev].slice(0, 10));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Execution failed');
       setResult(null);
@@ -115,7 +117,7 @@ export default function QueryLabPage() {
           
           <div className="p-4 flex-1 overflow-y-auto">
             <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-3">Saved Queries</h3>
-            <div className="space-y-2">
+            <div className="space-y-2 mb-6">
               {queries.filter(q => q.datasetId === activeDataset?.id).length === 0 ? (
                 <p className="text-xs text-white/30 italic">No saved queries for this dataset.</p>
               ) : (
@@ -127,6 +129,26 @@ export default function QueryLabPage() {
                   >
                     <p className="text-xs font-bold text-white/80">{q.name}</p>
                     <p className="text-[10px] text-white/40 truncate">{q.sql}</p>
+                  </button>
+                ))
+              )}
+            </div>
+
+            <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-3">Run History (Last 10)</h3>
+            <div className="space-y-2">
+              {runHistory.length === 0 ? (
+                <p className="text-xs text-white/30 italic">No queries run yet.</p>
+              ) : (
+                runHistory.map((h, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSql(h.sql)}
+                    className="w-full text-left p-2 rounded bg-white/5 hover:bg-white/10 transition border border-white/10 flex flex-col gap-1"
+                  >
+                    <div className="flex justify-between items-center w-full">
+                      <span className="text-[10px] text-cyan-400 font-mono truncate max-w-[120px]">{h.sql}</span>
+                      <span className="text-[9px] text-white/30">{h.timestamp}</span>
+                    </div>
                   </button>
                 ))
               )}
