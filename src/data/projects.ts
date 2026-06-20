@@ -6,6 +6,12 @@ export const projects = [
     link: 'https://6stats.pages.dev'
   },
   {
+    title: 'PromptLab',
+    description: 'A minimal, experimental design-lab interface built for testing LLM prompts, model configurations, and generative outputs. 100% client-side static application featuring a mechanical UI, dynamic block architecture, and keyless execution.',
+    tech: 'Client-side static app, LLMs, prompt engineering, mechanical UI, APIs',
+    link: 'https://prompt-playground.pages.dev'
+  },
+  {
     title: 'Gabriel Salas Portfolio',
     description: 'The main portfolio and website for my projects, software ideas and developer profile. This site acts as the front door for my work, showing who I am, what I build, what I\'m learning and the kind of software products I want to create.',
     tech: 'Next.js, React, Tailwind CSS, UI design, personal branding',

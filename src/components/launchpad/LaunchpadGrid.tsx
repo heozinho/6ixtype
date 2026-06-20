@@ -15,6 +15,7 @@ const filters: { id: FilterId; label: string }[] = [
   { id: "analytics", label: "Analytics" },
   { id: "platform", label: "Platform" },
   { id: "music", label: "Music" },
+  { id: "ai", label: "AI" },
 ];
 
 export default function LaunchpadGrid() {

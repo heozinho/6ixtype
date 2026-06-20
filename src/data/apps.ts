@@ -1,5 +1,5 @@
 export type AppStatus = 'live' | 'building' | 'prototype';
-export type AppType = 'platform' | 'analytics' | 'music' | 'portfolio';
+export type AppType = 'platform' | 'analytics' | 'music' | 'portfolio' | 'ai';
 
 export interface AppAction {
   label: string;
@@ -114,5 +114,29 @@ export const ecosystemApps: EcosystemApp[] = [
     accentHex: '#f59e0b',
     primaryAction: { label: 'View Concept', href: '/projects' },
     secondaryAction: { label: 'Coming Soon', href: '/projects' },
+  },
+  {
+    id: 'promptlab',
+    name: 'PromptLab',
+    slug: 'promptlab',
+    tagline: 'Experimental design-lab for LLM prompts',
+    description:
+      'A minimal, cold, and precise creative workstation for testing LLM prompts, model configurations, and generative outputs. 100% client-side with keyless execution and integrated diffusion.',
+    status: 'live',
+    type: 'ai',
+    tags: ['AI', 'Live', 'Workstation'],
+    features: [
+      'Mechanical UI with dynamic blocks',
+      'Keyless execution via community pool',
+      'Integrated diffusion engine',
+      'Compare mode & persistent archive',
+    ],
+    accent: 'slate',
+    accentHex: '#64748b',
+    primaryAction: {
+      label: 'Open Lab',
+      href: 'https://prompt-playground.pages.dev',
+      external: true,
+    },
   },
 ];
