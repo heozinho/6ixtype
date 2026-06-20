@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 import type { EcosystemApp } from "@/data/apps";
 
 const statusConfig = {
-  live: { label: "Live", className: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30" },
-  building: { label: "Building", className: "bg-cyan-500/15 text-cyan-400 border-cyan-500/30" },
-  prototype: { label: "Prototype", className: "bg-amber-500/15 text-amber-400 border-amber-500/30" },
+  live: { label: "Live", className: "bg-foreground/5 text-foreground border-foreground/20" },
+  building: { label: "Building", className: "bg-foreground/5 text-foreground/70 border-foreground/20" },
+  prototype: { label: "Prototype", className: "bg-foreground/5 text-foreground/50 border-foreground/20" },
 };
 
 interface AppCardProps {
@@ -30,8 +30,7 @@ export default function AppCard({ app, index }: AppCardProps) {
     >
       {/* Glow effect */}
       <div
-        className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
-        style={{ background: `${app.accentHex}22` }}
+        className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm bg-foreground/5"
       />
 
       <div className="relative h-full rounded-2xl border border-foreground/8 bg-foreground/3 backdrop-blur-sm p-6 flex flex-col gap-5 hover:border-foreground/15 transition-all duration-300">
@@ -39,10 +38,7 @@ export default function AppCard({ app, index }: AppCardProps) {
         <div className="flex items-start justify-between gap-3">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span
-                className="text-xl font-black tracking-tight"
-                style={{ color: app.accentHex }}
-              >
+              <span className="text-xl font-black tracking-tight text-foreground">
                 {app.name}
               </span>
             </div>
@@ -79,7 +75,7 @@ export default function AppCard({ app, index }: AppCardProps) {
         <ul className="space-y-1.5">
           {app.features.slice(0, 4).map((feature) => (
             <li key={feature} className="flex items-center gap-2 text-xs text-foreground/50">
-              <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: app.accentHex }} />
+              <CheckCircle2 className="w-3.5 h-3.5 shrink-0 text-foreground" />
               {feature}
             </li>
           ))}
@@ -97,9 +93,8 @@ export default function AppCard({ app, index }: AppCardProps) {
               rel="noopener noreferrer"
               className={cn(
                 buttonVariants({ size: "sm" }),
-                "flex-1 text-xs font-semibold justify-center"
+                "flex-1 text-xs font-semibold justify-center bg-foreground text-background hover:bg-foreground/90 border border-transparent"
               )}
-              style={{ backgroundColor: app.accentHex, color: "#000", border: "none" }}
             >
               {app.primaryAction.label}
               <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
@@ -109,9 +104,8 @@ export default function AppCard({ app, index }: AppCardProps) {
               href={app.primaryAction.href}
               className={cn(
                 buttonVariants({ size: "sm" }),
-                "flex-1 text-xs font-semibold justify-center"
+                "flex-1 text-xs font-semibold justify-center bg-foreground text-background hover:bg-foreground/90 border border-transparent"
               )}
-              style={{ backgroundColor: app.accentHex, color: "#000", border: "none" }}
             >
               {app.primaryAction.label}
               <ArrowRight className="w-3.5 h-3.5 ml-1.5" />

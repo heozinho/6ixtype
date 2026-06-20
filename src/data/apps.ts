@@ -76,9 +76,9 @@ export const ecosystemApps: EcosystemApp[] = [
     tagline: 'Your data, understood.',
     description:
       'Import files, databases and app data. Profile, clean, query, visualise, research, learn from and render datasets from one workspace. The flagship data platform.',
-    status: 'building',
+    status: 'live',
     type: 'platform',
-    tags: ['Data', 'Building'],
+    tags: ['Data', 'Live'],
     features: [
       'CSV & JSON import',
       'Dataset profiling & quality scores',
@@ -89,10 +89,10 @@ export const ecosystemApps: EcosystemApp[] = [
       'Render studio',
       'Research & learning workspace',
     ],
-    accent: 'cyan',
-    accentHex: '#06b6d4',
-    primaryAction: { label: 'View Product', href: '/6data' },
-    secondaryAction: { label: 'View Roadmap', href: '/6data#roadmap' },
+    accent: 'slate',
+    accentHex: '#ffffff',
+    primaryAction: { label: 'Open App', href: 'https://6data.pages.dev', external: true },
+    secondaryAction: undefined,
   },
   {
     id: '6play',
