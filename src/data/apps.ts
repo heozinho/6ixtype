@@ -19,6 +19,8 @@ export interface EcosystemApp {
   features: string[];
   accent: string;
   accentHex: string;
+  logo?: string;
+  banner?: string;
   primaryAction: AppAction;
   secondaryAction?: AppAction;
 }
@@ -42,6 +44,8 @@ export const ecosystemApps: EcosystemApp[] = [
     ],
     accent: 'violet',
     accentHex: '#8b5cf6',
+    logo: '/brands/6ixtype_main_logo_transparent.png',
+    banner: '/brands/6ixtype_web_banner_transparent.png',
     primaryAction: { label: 'Open Site', href: '/', external: false },
   },
   {
@@ -62,6 +66,8 @@ export const ecosystemApps: EcosystemApp[] = [
     ],
     accent: 'green',
     accentHex: '#1db954',
+    logo: '/brands/6stats_main_logo_transparent.png',
+    banner: '/brands/6stats_web_banner_transparent.png',
     primaryAction: {
       label: 'Open App',
       href: 'https://6stats.pages.dev',
@@ -91,6 +97,8 @@ export const ecosystemApps: EcosystemApp[] = [
     ],
     accent: 'slate',
     accentHex: '#ffffff',
+    logo: '/brands/6data_main_logo_transparent.png',
+    banner: '/brands/6data_web_banner_transparent.png',
     primaryAction: { label: 'Open App', href: 'https://6data.pages.dev', external: true },
     secondaryAction: undefined,
   },
@@ -112,6 +120,8 @@ export const ecosystemApps: EcosystemApp[] = [
     ],
     accent: 'amber',
     accentHex: '#f59e0b',
+    logo: '/brands/6play_main_logo_transparent.png',
+    banner: '/brands/6play_web_banner_transparent.png',
     primaryAction: { label: 'View Concept', href: '/projects' },
     secondaryAction: { label: 'Coming Soon', href: '/projects' },
   },

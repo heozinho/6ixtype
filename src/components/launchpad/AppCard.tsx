@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -38,6 +39,16 @@ export default function AppCard({ app, index }: AppCardProps) {
         <div className="flex items-start justify-between gap-3">
           <div>
             <div className="flex items-center gap-2 mb-1">
+              {app.logo && (
+                <div className="relative w-7 h-7 flex-shrink-0">
+                  <Image 
+                    src={app.logo} 
+                    alt={`${app.name} logo`} 
+                    fill 
+                    className="object-contain" 
+                  />
+                </div>
+              )}
               <span className="text-xl font-black tracking-tight text-foreground">
                 {app.name}
               </span>
