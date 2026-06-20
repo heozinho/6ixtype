@@ -2,7 +2,7 @@
 import { useState, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useDatasetStore } from '@/contexts/DatasetStoreContext';
-import { BarChart3, LineChart, AreaChart, ScatterChart, SaveAll, Database, LayoutTemplate } from 'lucide-react';
+import { ChartColumn, ChartLine, ChartArea, ChartScatter, SaveAll, Database, LayoutTemplate } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import ChartRenderer from '@/components/6data/visualise/ChartRenderer';
@@ -11,10 +11,10 @@ import type { ChartType, SavedChart } from '@/lib/6data/types';
 import { applyCleaningSteps } from '@/lib/6data/cleaning-engine';
 
 const CHART_TYPES: { type: ChartType; label: string; icon: any }[] = [
-  { type: 'bar', label: 'Bar Chart', icon: BarChart3 },
-  { type: 'line', label: 'Line Chart', icon: LineChart },
-  { type: 'area', label: 'Area Chart', icon: AreaChart },
-  { type: 'scatter', label: 'Scatter Plot', icon: ScatterChart },
+  { type: 'bar', label: 'Bar Chart', icon: ChartColumn },
+  { type: 'line', label: 'Line Chart', icon: ChartLine },
+  { type: 'area', label: 'Area Chart', icon: ChartArea },
+  { type: 'scatter', label: 'Scatter Plot', icon: ChartScatter },
 ];
 
 function VisualiseContent() {

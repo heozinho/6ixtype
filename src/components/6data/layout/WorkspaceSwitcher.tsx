@@ -12,6 +12,8 @@ export default function WorkspaceSwitcher() {
 
   const active = workspaces.find((w) => w.id === activeId) ?? workspaces[0];
 
+  if (!active) return null;
+
   return (
     <div className="relative">
       <button

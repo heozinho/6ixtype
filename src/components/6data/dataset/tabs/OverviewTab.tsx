@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { AlertTriangle, Lightbulb, BarChart3, HelpCircle, Calendar, Hash, Type, Tag } from 'lucide-react';
+import { AlertTriangle, Lightbulb, ChartColumn, HelpCircle, Calendar, Hash, Type, Tag } from 'lucide-react';
 import QualityScore from '../QualityScore';
 import type { ParsedDataset } from '@/lib/6data/types';
 
@@ -133,7 +133,7 @@ export default function OverviewTab({ dataset }: OverviewTabProps) {
       {p.suggestedCharts.length > 0 && (
         <div className="p-5 rounded-xl border border-white/8 bg-white/[0.025]">
           <div className="flex items-center gap-2 mb-3">
-            <BarChart3 className="w-4 h-4 text-violet-400" />
+            <ChartColumn className="w-4 h-4 text-violet-400" />
             <h3 className="text-xs font-bold text-white/60 uppercase tracking-wider">
               Suggested Charts
             </h3>

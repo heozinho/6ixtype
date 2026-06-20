@@ -9,7 +9,7 @@ import {
   Archive,
   Table2,
   FlaskConical,
-  BarChart3,
+  ChartColumn,
   Box,
   Wand2,
   LayoutGrid,
@@ -45,7 +45,7 @@ const navSections = [
     label: "Analysis",
     items: [
       { name: "Query Lab", path: "/6data/app/query", icon: FlaskConical },
-      { name: "Visualise", path: "/6data/app/visualise", icon: BarChart3 },
+      { name: "Visualise", path: "/6data/app/visualise", icon: ChartColumn },
       { name: "3D Lab", path: "/6data/app/3d", icon: Box },
       { name: "Render Studio", path: "/6data/app/render", icon: Wand2 },
       { name: "Dashboards", path: "/6data/app/dashboards", icon: LayoutGrid },

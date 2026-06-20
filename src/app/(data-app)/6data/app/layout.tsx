@@ -4,7 +4,6 @@ import "@/app/globals.css";
 import "@/app/fonts.css";
 import DataShell from "@/components/6data/layout/DataShell";
 
-export const runtime = 'edge';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

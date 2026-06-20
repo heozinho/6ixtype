@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, BarChart3, Code, Link2, FileText, Moon, Sun, Layers } from 'lucide-react';
+import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, ChartColumn, Code, Link2, FileText, Moon, Sun, Layers } from 'lucide-react';
 import { Button } from './ui/button';
 import { useTheme } from 'next-themes';
 import { cn } from '../lib/utils';
@@ -15,7 +15,7 @@ const navigation = [
   { name: 'Experience', path: '/experience', icon: Award },
   { name: 'Education', path: '/education', icon: GraduationCap },
   { name: 'Contact', path: '/contact', icon: Mail },
-  { name: 'Stats', path: '/stats', icon: BarChart3 },
+  { name: 'Stats', path: '/stats', icon: ChartColumn },
 ];
 
 const ecosystemNav = [

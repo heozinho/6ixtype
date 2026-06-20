@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from './ui/command';
-import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, BarChart3 } from 'lucide-react';
+import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, ChartColumn } from 'lucide-react';
 
 const sections = [
   { name: 'Introduction', path: '/', icon: Home },
@@ -12,7 +12,7 @@ const sections = [
   { name: 'Experience', path: '/experience', icon: Award },
   { name: 'Education', path: '/education', icon: GraduationCap },
   { name: 'Contact', path: '/contact', icon: Mail },
-  { name: 'Stats', path: '/stats', icon: BarChart3 },
+  { name: 'Stats', path: '/stats', icon: ChartColumn },
 ];
 
 export default function CommandPalette() {

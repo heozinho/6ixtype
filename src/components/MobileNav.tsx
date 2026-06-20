@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, BarChart3, Menu, X, Layers } from 'lucide-react';
+import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, ChartColumn, Menu, X, Layers } from 'lucide-react';
 import { Button } from './ui/button';
 import { cn } from '../lib/utils';
 import { profile } from '@/data/profile';
@@ -15,7 +15,7 @@ const navigation = [
   { name: 'Experience', path: '/experience', icon: Award },
   { name: 'Education', path: '/education', icon: GraduationCap },
   { name: 'Contact', path: '/contact', icon: Mail },
-  { name: 'Stats', path: '/stats', icon: BarChart3 },
+  { name: 'Stats', path: '/stats', icon: ChartColumn },
 ];
 
 const ecosystemNav = [
