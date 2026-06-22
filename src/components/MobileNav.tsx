@@ -1,5 +1,6 @@
 "use client";
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, ChartColumn, Menu, X, Layers } from 'lucide-react';
@@ -31,8 +32,13 @@ export default function MobileNav() {
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-card border-b border-border">
         <div className="flex items-center justify-between p-4">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-base font-bold text-primary-foreground">GS</span>
+            <div className="relative w-8 h-8 flex-shrink-0">
+              <Image 
+                src="/brand/6ixtype_main_logo_transparent.png" 
+                alt="6ixtype Logo" 
+                fill 
+                className="object-contain dark:invert"
+              />
             </div>
             <span className="font-bold text-foreground">{profile.name}</span>
           </Link>

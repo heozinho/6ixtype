@@ -1,4 +1,5 @@
 "use client";
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, User, Briefcase, Code2, Award, GraduationCap, Mail, ChartColumn, Code, Link2, FileText, Moon, Sun, Layers } from 'lucide-react';
@@ -30,12 +31,17 @@ export default function Sidebar() {
     <aside className="w-64 bg-card border-r border-border flex flex-col h-full">
       <div className="p-6">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-lg font-bold text-primary-foreground">GS</span>
+          <div className="relative w-10 h-10 flex-shrink-0">
+            <Image 
+              src="/brand/6ixtype_main_logo_transparent.png" 
+              alt="6ixtype Logo" 
+              fill 
+              className="object-contain dark:invert"
+            />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-foreground group-hover:text-primary transition-colors">{profile.name}</span>
-            <span className="text-xs text-muted-foreground">Portfolio</span>
+            <span className="font-bold text-foreground group-hover:text-primary transition-colors">6ixtype</span>
+            <span className="text-xs text-muted-foreground">Ecosystem</span>
           </div>
         </Link>
       </div>

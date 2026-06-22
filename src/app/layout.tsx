@@ -21,6 +21,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Gabriel Salas Portfolio",
   description: "Personal portfolio of Gabriel Salas",
+  icons: {
+    icon: "/brand/6ixtype_favicon_transparent.png",
+  },
 };
 
 export default function RootLayout({
